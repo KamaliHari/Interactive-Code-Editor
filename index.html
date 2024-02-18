@@ -75,31 +75,11 @@
   <div class="outputContainer">
     <iframe id="output" title="output" frameborder="0" width="100%" height="100%"></iframe>
   </div>
-
+  <button class="save-btn">Save Project</button>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
   <script type="text/javascript" src="app.js"></script>
-  <button id="save-button">Save</button>
 
-  <script>
-    document.getElementById('save-button').addEventListener('click', function() {
-      saveCode();
-    });
-
-    function saveCode() {
-      var htmlCode = document.getElementById('html').value;
-      var cssCode = document.getElementById('css').value;
-      var jsCode = document.getElementById('js').value;
-
-      var savedCode = {
-        html: htmlCode,
-        css: cssCode,
-        js: jsCode
-      };
-
-      localStorage.setItem('savedCode', JSON.stringify(savedCode));
-
-      swal('Saved!', 'Your code has been saved successfully.', 'success');
-    }
-  </script>
 </body>
 </html>

@@ -108,3 +108,32 @@ function copyCode(code) {
   document.execCommand('copy');
   swal('Copied!', 'You are ready to rock', 'success');
 }
+document.querySelector('.save-btn').addEventListener('click', async () => {
+  const htmlContent = html.value;
+  const cssContent = css.value;
+  const jsContent = js.value;
+
+  try {
+    // Request access to the file system
+    const handle = await window.showDirectoryPicker();
+
+    // Create or update the files in the selected directory
+    const files = [
+      { name: 'index.html', content: htmlContent },
+      { name: 'styles.css', content: cssContent },
+      { name: 'script.js', content: jsContent }
+    ];
+
+    for (const file of files) {
+      const writable = await handle.getFileHandle(file.name, { create: true });
+      const writableStream = await writable.createWritable();
+      await writableStream.write(file.content);
+      await writableStream.close();
+    }
+
+    alert('Files have been saved successfully.');
+  } catch (error) {
+    console.error('Error saving files:', error);
+    alert('Failed to save files. Please try again.');
+  }
+});
