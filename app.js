@@ -2,6 +2,7 @@ var html = document.getElementById('html');
 var css = document.getElementById('css');
 var js = document.getElementById('js');
 var code = document.getElementById('output').contentWindow.document;
+
 function compile() {
   const PREFIX = 'livecode-';
   const data = ['html', 'css', 'js'].map((key) => {
@@ -96,6 +97,7 @@ document.querySelector('.copy-css').addEventListener('click', (e) => {
   const code = document.querySelector('#css');
   copyCode(code);
 });
+
 document.querySelector('.copy-js').addEventListener('click', (e) => {
   const code = document.querySelector('#js');
   copyCode(code);
