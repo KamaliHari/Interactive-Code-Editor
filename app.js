@@ -3,6 +3,43 @@ var css = document.getElementById('css');
 var js = document.getElementById('js');
 var code = document.getElementById('output').contentWindow.document;
 
+function compile() {
+  var htmlCode = htmlEditor.getValue();
+  let cssCode = "<style>" + cssEditor.getValue() + "</style>";
+  let scriptCode = jsEditor.getValue();
+  let output = document.querySelector(".outputContainer #output");
+  output.contentDocument.body.innerHTML = htmlCode + cssCode;
+  output.contentWindow.eval(scriptCode);
+}
+
+var htmlEditor = CodeMirror.fromTextArea(document.getElementById("html"), {
+  lineNumbers: true,
+  mode: "text/html",
+  theme: "default",
+  autoCloseTags: true,
+  extraKeys: { "Ctrl-Space": "autocomplete" }
+});
+
+var cssEditor = CodeMirror.fromTextArea(document.getElementById("css"), {
+  lineNumbers: true,
+  mode: "css",
+  theme: "default",
+  autoCloseTags: true,
+  extraKeys: { "Ctrl-Space": "autocomplete" }
+});
+
+var jsEditor = CodeMirror.fromTextArea(document.getElementById("js"), {
+  lineNumbers: true,
+  mode: "javascript",
+  autoCloseTags: true,
+  theme: "default",
+  extraKeys: { "Ctrl-Space": "autocomplete" }
+});
+
+htmlEditor.on("change", compile);
+cssEditor.on("change", compile);
+jsEditor.on("change", compile);
+
 function run(){		
   var htmlCode=htmlEditor.getValue();			
   let cssCode="<style>"+cssEditor.getValue()+"</style>";
@@ -10,7 +47,6 @@ function run(){
   let output =document.querySelector(".outputContainer #output");
   output.contentDocument.body.innerHTML=htmlCode+cssCode;
   output.contentWindow.eval(scriptCode);
-  console.log(htmlCode,cssCode,scriptCode)
 }
 
 document.querySelectorAll('.control').forEach((control) =>
@@ -87,27 +123,6 @@ document.querySelector('.save-btn').addEventListener('click', async () => {
   }
 });
 
-var htmlEditor = CodeMirror.fromTextArea(document.getElementById("html"), {
-  lineNumbers: true, 
-  mode: "text/html",
-  theme: "default",
-  autoCloseTags: true, 
-});
-  
-var cssEditor = CodeMirror.fromTextArea(document.getElementById("css"), {
-  lineNumbers: true, 
-  mode: "css",
-  theme: "default",
-  autoCloseTags: true, 
-});
-  
-var jsEditor = CodeMirror.fromTextArea(document.getElementById("js"), {
-  lineNumbers: true, 
-  mode: "javascript",
-  autoCloseTags: true, 
-  theme: "default",
-});
-
 var themeSelect = document.getElementById('theme-select');
 
 themeSelect.addEventListener('change', function() {
@@ -116,5 +131,3 @@ themeSelect.addEventListener('change', function() {
   cssEditor.setOption('theme', selectedTheme);
   jsEditor.setOption('theme', selectedTheme);
 });
-
-  
