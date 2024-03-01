@@ -17,6 +17,7 @@ var htmlEditor = CodeMirror.fromTextArea(document.getElementById("html"), {
   mode: "text/html",
   theme: "default",
   autoCloseTags: true,
+  autoCloseBrackets: true,
   extraKeys: { "Ctrl-Space": "autocomplete" }
 });
 
@@ -25,6 +26,7 @@ var cssEditor = CodeMirror.fromTextArea(document.getElementById("css"), {
   mode: "css",
   theme: "default",
   autoCloseTags: true,
+  autoCloseBrackets: true,
   extraKeys: { "Ctrl-Space": "autocomplete" }
 });
 
@@ -32,6 +34,7 @@ var jsEditor = CodeMirror.fromTextArea(document.getElementById("js"), {
   lineNumbers: true,
   mode: "javascript",
   autoCloseTags: true,
+  autoCloseBrackets: true,
   theme: "default",
   extraKeys: { "Ctrl-Space": "autocomplete" }
 });
