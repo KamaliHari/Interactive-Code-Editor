@@ -78,8 +78,6 @@ document.querySelectorAll('.clear').forEach((clear) =>
 );
 
 
-
-
 document.querySelectorAll('.copy-btn').forEach((copy) => {
   copy.addEventListener('click', (e) => {
     const temp = e.target.innerHTML;
