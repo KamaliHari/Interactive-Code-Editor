@@ -39,8 +39,8 @@ body::-webkit-scrollbar-thumb {
 }
 
 textarea {
-  width: 100%;
-  height: 100%;
+  height: 100px;
+  resize: none;
   padding: 1rem;
   background: #253237;
   color: white;
@@ -88,6 +88,10 @@ h2 {
   user-select: none;
   border-bottom: 20px solid hsl(225, 6%, 25%);
 
+}
+
+.CodeMirror {
+  width: 1000px !important; /* Set your desired height here */
 }
 
 
