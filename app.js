@@ -1,4 +1,4 @@
-var html = document.getElementById('html');
+  var html = document.getElementById('html');
 var css = document.getElementById('css');
 var js = document.getElementById('js');
 var code = document.getElementById('output').contentWindow.document;
@@ -18,8 +18,11 @@ var htmlEditor = CodeMirror.fromTextArea(document.getElementById("html"), {
   theme: "default",
   autoCloseTags: true,
   autoCloseBrackets: true,
-  extraKeys: { "Ctrl-Space": "autocomplete" }
-});
+  extraKeys: { "Ctrl-Space": "autocomplete" },
+  hintOptions: { hint: CodeMirror.hint.html }
+
+  
+}); 
 
 var cssEditor = CodeMirror.fromTextArea(document.getElementById("css"), {
   lineNumbers: true,
@@ -27,7 +30,8 @@ var cssEditor = CodeMirror.fromTextArea(document.getElementById("css"), {
   theme: "default",
   autoCloseTags: true,
   autoCloseBrackets: true,
-  extraKeys: { "Ctrl-Space": "autocomplete" }
+  extraKeys: { "Ctrl-Space": "autocomplete" },
+  hintOptions: { hint: CodeMirror.hint.css }
 });
 
 var jsEditor = CodeMirror.fromTextArea(document.getElementById("js"), {
@@ -36,7 +40,9 @@ var jsEditor = CodeMirror.fromTextArea(document.getElementById("js"), {
   autoCloseTags: true,
   autoCloseBrackets: true,
   theme: "default",
-  extraKeys: { "Ctrl-Space": "autocomplete" }
+  extraKeys: { "Ctrl-Space": "autocomplete" },
+  hintOptions: { hint: CodeMirror.hint.javascript }
+  
 });
 
 htmlEditor.on("change", compile);
@@ -62,12 +68,16 @@ document.querySelectorAll('.control').forEach((control) =>
 
 document.querySelectorAll('.clear').forEach((clear) =>
   clear.addEventListener('click', (e) => {
-    const ele = e.target.classList[1];
-    document.querySelector(`#${ele}`).value = '';
-    localStorage.setItem(`livecode-${ele}`, JSON.stringify(''));
-    compile();
+    const textareaId = e.target.getAttribute('data-textarea'); // Get the id of the textarea
+    const editor = window[textareaId + 'Editor']; // Get the corresponding CodeMirror editor instance
+    editor.setValue(''); // Clear the editor content
+    localStorage.setItem(`livecode-${textareaId}`, JSON.stringify('')); // Clear localStorage content
+    compile(); // Compile the code
   })
 );
+
+
+
 
 document.querySelectorAll('.copy-btn').forEach((copy) => {
   copy.addEventListener('click', (e) => {
@@ -125,6 +135,9 @@ document.querySelector('.save-btn').addEventListener('click', async () => {
     alert('Failed to save files. Please try again.');
   }
 });
+
+
+
 
 var themeSelect = document.getElementById('theme-select');
 

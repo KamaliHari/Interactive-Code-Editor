@@ -37,6 +37,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/mode/xml/xml.min.js"></script>
 <script src="https:///cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/mode/htmlmixed/htmlmixed.js"></script>
 <script src="codemirror/addon/edit/closebrackets.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/addon/hint/show-hint.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/addon/hint/xml-hint.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/addon/hint/css-hint.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/addon/hint/javascript-hint.min.js"></script>
+
+
 <div class="row">
   <div class="column">
   <h1 style="margin-left: 20px; color: #fff;">Live Code Editor</h1>   
@@ -72,7 +79,7 @@
         </button>
       </div>
       <textarea name="html" id="html" cols="auto" rows="auto" autofocus autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
-      <button class="clear html">clear</button>
+      <button class="clear" data-textarea="html">clear</button>
       <button class="copy-btn copy-html">
         <span>Copy HTML</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
@@ -92,7 +99,7 @@
         </button>
       </div>
       <textarea name="css" id="css" cols="auto" rows="auto" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
-      <button class="clear css">clear</button>
+      <button class="clear" data-textarea="css">clear</button>
       <button class="copy-btn copy-css">
         <span>Copy CSS</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
@@ -112,7 +119,7 @@
         </button>
       </div>
       <textarea name="js" id="js" cols="auto" rows="auto" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
-      <button class="clear js">clear</button>
+      <button class="clear" data-textarea="js">clear</button>
       <button class="copy-btn copy-js">
         <span>Copy JS</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
