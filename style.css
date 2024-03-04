@@ -144,14 +144,6 @@ h2 {
   margin: 8px;
 }
 
-/* .close::before {
-  content: '❌';
-  position: absolute;
-  top: -2px;
-  left: -6px;
-  margin-top: 8px;
-} */
-
 .icon {
   margin-right: 5px;
 }
@@ -195,10 +187,11 @@ h2 {
   transition: 0.25s ease-in-out;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+
 }
 .copy-btn span {
   margin-right: 5px;
-  color: #fff;
+
 }
 .copy-btn:hover {
   background: #3a505871;

@@ -97,7 +97,6 @@ document.querySelector('.copy-css').addEventListener('click', (e) => {
   const code = document.querySelector('#css');
   copyCode(code);
 });
-
 document.querySelector('.copy-js').addEventListener('click', (e) => {
   const code = document.querySelector('#js');
   copyCode(code);
@@ -108,6 +107,7 @@ function copyCode(code) {
   document.execCommand('copy');
   swal('Copied!', 'You are ready to rock', 'success');
 }
+
 document.querySelector('.save-btn').addEventListener('click', async () => {
   const htmlContent = html.value;
   const cssContent = css.value;
@@ -135,9 +135,6 @@ document.querySelector('.save-btn').addEventListener('click', async () => {
   }
 });
 
-
-
-
 var themeSelect = document.getElementById('theme-select');
 
 themeSelect.addEventListener('change', function() {
@@ -145,4 +142,13 @@ themeSelect.addEventListener('change', function() {
   htmlEditor.setOption('theme', selectedTheme);
   cssEditor.setOption('theme', selectedTheme);
   jsEditor.setOption('theme', selectedTheme);
+});
+
+var fontSizeSelect = document.getElementById('font-size-select');
+
+fontSizeSelect.addEventListener('change', function() {
+  var selectedFontSize = fontSizeSelect.value;
+  htmlEditor.getWrapperElement().style.fontSize = selectedFontSize;
+  cssEditor.getWrapperElement().style.fontSize = selectedFontSize;
+  jsEditor.getWrapperElement().style.fontSize = selectedFontSize;
 });
