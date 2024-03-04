@@ -69,49 +69,14 @@ document.querySelectorAll('.control').forEach((control) =>
 
 document.querySelectorAll('.clear').forEach((clear) =>
   clear.addEventListener('click', (e) => {
-    const textareaId = e.target.getAttribute('data-textarea'); // Get the id of the textarea
-    const editor = window[textareaId + 'Editor']; // Get the corresponding CodeMirror editor instance
-    editor.setValue(''); // Clear the editor content
-    localStorage.setItem(`livecode-${textareaId}`, JSON.stringify('')); // Clear localStorage content
-    compile(); // Compile the code
+    const textareaId = e.target.getAttribute('data-textarea'); 
+    const editor = window[textareaId + 'Editor']; 
+    editor.setValue(''); 
+    localStorage.setItem(`livecode-${textareaId}`, JSON.stringify('')); 
+    compile(); 
   })
 );
 
-
-document.querySelectorAll('.copy-btn').forEach((copy) => {
-  copy.addEventListener('click', (e) => {
-    const temp = e.target.innerHTML;
-    e.target.innerText = 'Copied!';
-    console.log(temp)
-    setTimeout(function () {
-      e.target.innerHTML = temp;
-    }, 800);
-  });
-});
-
-
-
-document.querySelector('.copy-html').addEventListener('click', (e) => {
-  const code = document.getElementById("html").innerHTML;
-  console.log(code)
-  copyCode(code);
-});
-
-document.querySelector('.copy-css').addEventListener('click', (e) => {
-  const code = document.querySelector('#css');
-  copyCode(code);
-});
-document.querySelector('.copy-js').addEventListener('click', (e) => {
-  const code = document.querySelector('#js');
-  copyCode(code);
-});
-
-function copyCode(code) {
-  console.log(code)
-  code.select();
-  document.execCommand('copy');
-  swal('Copied!', 'You are ready to rock', 'success');
-}
 
 document.querySelector('.save-btn').addEventListener('click', async () => {
   const htmlContent = html.value;
