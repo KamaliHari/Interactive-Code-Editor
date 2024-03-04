@@ -122,3 +122,37 @@ fontSizeSelect.addEventListener('change', function() {
   cssEditor.getWrapperElement().style.fontSize = selectedFontSize;
   jsEditor.getWrapperElement().style.fontSize = selectedFontSize;
 });
+
+function copyToClipboard(editorId) {
+  var editor;
+  switch (editorId) {
+    case 'html':
+      editor = htmlEditor;
+      break;
+    case 'css':
+      editor = cssEditor;
+      break;
+    case 'js':
+      editor = jsEditor;
+      break;
+    default:
+      console.error('Invalid editor ID');
+      return;
+  }
+
+  var editorValue = editor.getValue().trim();
+  if (editorValue === "") {
+    alert("Editor is empty. Nothing to copy.");
+    return;
+  }
+
+  navigator.clipboard.writeText(editorValue)
+    .then(() => {
+      alert("Text copied to clipboard");
+    })
+    .catch(err => {
+      console.error("Failed to copy: ", err);
+    });
+}
+
+
