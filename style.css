@@ -1,4 +1,3 @@
-
 html,
 body {
   box-sizing: border-box;
@@ -7,7 +6,7 @@ body {
   font-family: "Quicksand", Arial, sans-serif;
   font-weight: 400;
   font-size: 14px;
-  line-height: 1.7;
+  line-height: 1.5;
   margin: 0 auto;
   width: 100%;
   height: 100%;
@@ -17,22 +16,25 @@ body {
   box-sizing: border-box;
 }
 select{
-  height: 40px;
+  height: 30px;
   width: 140px;
+  margin: 4%;
+  border-radius: 5px;
 }
+
 #theme{
+  margin-top: 10px;
   
 }
 
 body::-webkit-scrollbar {
   width: 5px;
 }
-/* Track */
+
 body::-webkit-scrollbar-track {
   border-radius: 10px;
 }
 
-/* Handle */
 body::-webkit-scrollbar-thumb {
   background: #666b7a;
   border-radius: 10px;
@@ -52,16 +54,15 @@ textarea {
 }
 h2 {
   margin: 0;
+  font-size: 16px;
 }
 .editorContainer {
-        
   background-image: url('back.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position:center;
   background-size: 100% ; 
   height: 50vh;
-  
 }
 .row {
   display: flex;
@@ -92,6 +93,7 @@ h2 {
 
 .CodeMirror {
   width: 800px !important; 
+  height: 150px;
 }
 
 
@@ -120,6 +122,9 @@ h2 {
   font-family: 'Quicksand', sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
+}
+.col{
+  flex: 0%;
 }
 
 .control {
@@ -154,6 +159,7 @@ h2 {
 
 .icon {
   margin-right: 5px;
+  width: 20px;
 }
 
 .hidden {
@@ -174,7 +180,6 @@ h2 {
   z-index: 2; /* Adjust this value as needed */
 }
 
-
 .wrapper:hover .clear {
   display: block;
 }
@@ -182,6 +187,7 @@ h2 {
 .clear:hover {
   opacity: 1;
 }
+
 .copy-btn {
   background: #212d31;
   border: none;
@@ -204,18 +210,18 @@ h2 {
   background: #3a505871;
 }
 .save-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: #4caf50; /* Green color */
+  
+  background-color: #4caf50;
   border: none;
-  border-radius: 5px; /* Rounded corners */
+  border-radius: 5px;
   color: white;
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: 10px 10px;
+  font-size: 14px;
   cursor: pointer;
+  float: right;
+  margin: 0%;
 }
 
 .save-btn:hover {
-  background-color: #45a049; /* Darker green color on hover */
+  background-color: #45a049; 
 }

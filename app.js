@@ -1,4 +1,4 @@
-  var html = document.getElementById('html');
+  var html = document.getElementById('html').innerHTML;
 var css = document.getElementById('css');
 var js = document.getElementById('js');
 var code = document.getElementById('output').contentWindow.document;
@@ -82,14 +82,18 @@ document.querySelectorAll('.copy-btn').forEach((copy) => {
   copy.addEventListener('click', (e) => {
     const temp = e.target.innerHTML;
     e.target.innerText = 'Copied!';
+    console.log(temp)
     setTimeout(function () {
       e.target.innerHTML = temp;
     }, 800);
   });
 });
 
+
+
 document.querySelector('.copy-html').addEventListener('click', (e) => {
-  const code = document.querySelector('#html');
+  const code = document.getElementById("html").innerHTML;
+  console.log(code)
   copyCode(code);
 });
 
@@ -104,6 +108,7 @@ document.querySelector('.copy-js').addEventListener('click', (e) => {
 });
 
 function copyCode(code) {
+  console.log(code)
   code.select();
   document.execCommand('copy');
   swal('Copied!', 'You are ready to rock', 'success');
