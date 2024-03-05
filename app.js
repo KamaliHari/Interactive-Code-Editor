@@ -120,13 +120,6 @@ function copyToClipboard(editorId) {
     });
 }
 
-const controlButtons = document.querySelectorAll('.control');
-controlButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const wrapper = button.closest('.wrapper');
-    wrapper.classList.toggle('fullscreen');
-  });
-});
 
 async function saveProject() {
   try {
@@ -162,8 +155,15 @@ async function saveProject() {
     console.error("Error saving project:", err);
   }
 }
-
-document.querySelector('.save-btn').addEventListener('click', saveProject);
+document.querySelectorAll('.maximize').forEach(button => {
+  button.addEventListener('click', () => {
+    const wrapper = button.closest('.wrapper');
+    const codeMirror = wrapper.querySelector('.CodeMirror');
+    
+    wrapper.classList.toggle('fullscreen');
+    codeMirror.style.height = wrapper.classList.contains('fullscreen') ? '750px' : '150px';
+  });
+});
 
 
 
