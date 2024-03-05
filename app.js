@@ -86,7 +86,10 @@ document.querySelector('.save-btn').addEventListener('click', async () => {
     for (const file of files) {
       const writable = await handle.getFileHandle(file.name, { create: true });
       const writableStream = await writable.createWritable();
-      await writableStream.write(file.content);
+      
+      const contentBlob = new Blob([file.content], { type: 'text/plain' });
+      await writableStream.write(contentBlob);
+      
       await writableStream.close();
     }
 
