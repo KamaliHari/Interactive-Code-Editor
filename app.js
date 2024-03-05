@@ -23,7 +23,7 @@ var htmlEditor = CodeMirror.fromTextArea(document.getElementById("html"), {
 
   
 }); 
-htmlEditor.setSize("50px",null);
+  htmlEditor.setSize("50px",null);
 
 var cssEditor = CodeMirror.fromTextArea(document.getElementById("css"), {
   lineNumbers: true,
@@ -69,36 +69,6 @@ document.querySelectorAll('.clear').forEach((clear) =>
   })
 );
 
-
-document.querySelector('.save-btn').addEventListener('click', async () => {
-  const htmlContent = html.value;
-  const cssContent = css.value;
-  const jsContent = js.value;
-
-  try {
-    const handle = await window.showDirectoryPicker();
-    const files = [
-      { name: 'index.html', content: htmlContent },
-      { name: 'styles.css', content: cssContent },
-      { name: 'script.js', content: jsContent }
-    ];
-
-    for (const file of files) {
-      const writable = await handle.getFileHandle(file.name, { create: true });
-      const writableStream = await writable.createWritable();
-      
-      const contentBlob = new Blob([file.content], { type: 'text/plain' });
-      await writableStream.write(contentBlob);
-      
-      await writableStream.close();
-    }
-
-    alert('Files have been saved successfully.');
-  } catch (error) {
-    console.error('Error saving files:', error);
-    alert('Failed to save files. Please try again.');
-  }
-});
 
 var themeSelect = document.getElementById('theme-select');
 
@@ -149,5 +119,55 @@ function copyToClipboard(editorId) {
       console.error("Failed to copy: ", err);
     });
 }
+
+const controlButtons = document.querySelectorAll('.control');
+controlButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const wrapper = button.closest('.wrapper');
+    wrapper.classList.toggle('fullscreen');
+  });
+});
+
+async function saveProject() {
+  try {
+    // Get the content of each editor
+    const htmlContent = window['htmlEditor'].getValue();
+    const cssContent = window['cssEditor'].getValue();
+    const jsContent = window['jsEditor'].getValue();
+    
+    console.log("HTML Content:", htmlContent);
+    console.log("CSS Content:", cssContent);
+    console.log("JS Content:", jsContent);
+
+    // Request access to the file system to select a directory
+    const directoryHandle = await window.showDirectoryPicker();
+
+    // Create and write HTML file
+    const htmlFileHandle = await directoryHandle.getFileHandle("index.html", { create: true });
+    const htmlWritable = await htmlFileHandle.createWritable();
+    await htmlWritable.write(htmlContent);
+    await htmlWritable.close();
+
+    // Create and write CSS file
+    const cssFileHandle = await directoryHandle.getFileHandle("styles.css", { create: true });
+    const cssWritable = await cssFileHandle.createWritable();
+    await cssWritable.write(cssContent);
+    await cssWritable.close();
+
+    // Create and write JS file
+    const jsFileHandle = await directoryHandle.getFileHandle("script.js", { create: true });
+    const jsWritable = await jsFileHandle.createWritable();
+    await jsWritable.write(jsContent);
+    await jsWritable.close();
+
+    console.log("Project saved successfully!");
+  } catch (err) {
+    console.error("Error saving project:", err);
+  }
+}
+
+// Attach click event listener to the save button
+document.querySelector('.save-btn').addEventListener('click', saveProject);
+
 
 

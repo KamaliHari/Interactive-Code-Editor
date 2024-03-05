@@ -206,19 +206,31 @@ h2 {
 .copy-btn:hover {
   background: #3a505871;
 }
-.save-btn {
-  
-  background-color: #4caf50;
+/* .save-btn {
+  position: absolute;
+  top: 10px;
+  right: -10px;
+  background-color: #4caf50; 
   border: none;
-  border-radius: 5px;
+  border-radius: 5px; 
   color: white;
-  padding: 10px 10px;
-  font-size: 14px;
+  padding: 10px 20px;
+  font-size: 16px;
   cursor: pointer;
-  float: right;
-  margin: 0%;
-}
+
+} */
 
 .save-btn:hover {
-  background-color: #45a049; 
+  background-color: #45a049; /* Darker green color on hover */
 }
+
+.wrapper.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999; /* Ensure it's above other elements */
+  /* Add any other styling you need for a fullscreen editor */
+}
+
