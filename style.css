@@ -12,19 +12,20 @@ body {
   height: 100%;
   background-color: #3C3E44;
 }
-*{
+
+* {
   box-sizing: border-box;
 }
-select{
+
+select {
   height: 30px;
   width: 100px;
   margin: 4%;
   border-radius: 5px;
 }
 
-#theme{
+#theme {
   margin-top: 20px;
-  
 }
 
 body::-webkit-scrollbar {
@@ -49,21 +50,25 @@ textarea {
   outline: none;
   border: none;
 }
+
 .main-title {
   display: flex;
 }
+
 h2 {
   margin: 0;
   font-size: 16px;
 }
+
 .editorContainer {
   background-image: url('back.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position:center;
-  background-size: 100% ; 
+  background-position: center;
+  background-size: 100%;
   height: 50vh;
 }
+
 .row {
   display: flex;
   align-items: center;
@@ -72,10 +77,10 @@ h2 {
 .row1 {
   display: flex;
 }
+
 .column {
   flex: 50%;
 }
-
 
 @media (max-width: 850px) {
   .editorContainer {
@@ -92,14 +97,12 @@ h2 {
   height: 100vh;
   user-select: none;
   border-bottom: 20px solid hsl(225, 6%, 25%);
-
 }
 
 .CodeMirror {
-  width: 800px !important; 
+  width: 800px !important;
   height: 150px;
 }
-
 
 .wrapper {
   flex-grow: 1;
@@ -117,8 +120,8 @@ h2 {
   background-image: url('back.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position:center;
-  background-size: 100% ;
+  background-position: center;
+  background-size: 100%;
   color: #fff;
   padding: 0.5rem;
   padding-left: 1rem;
@@ -127,7 +130,8 @@ h2 {
   font-size: 1.1rem;
   font-weight: 700;
 }
-.col{
+
+.col {
   flex: 0%;
 }
 
@@ -173,7 +177,8 @@ h2 {
   border-radius: 15px;
   opacity: 0.75;
   cursor: pointer;
-  z-index: 2; /* Adjust this value as needed */
+  z-index: 2;
+  /* Adjust this value as needed */
 }
 
 .wrapper:hover .clear {
@@ -197,31 +202,35 @@ h2 {
   transition: 0.25s ease-in-out;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-
 }
+
 .copy-btn span {
   margin-right: 5px;
-
 }
+
 .copy-btn:hover {
   background: #3a505871;
 }
-/* .save-btn {
-  position: absolute;
-  top: 10px;
-  right: -10px;
-  background-color: #4caf50; 
+
+.save-btn {
+  background-color: #4CAF50;
   border: none;
-  border-radius: 5px; 
   color: white;
   padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
   font-size: 16px;
+  border-radius: 5px;
   cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 20px;
+  z-index: 3;
+}
 
-} */
-
-.save-btn:hover {
-  background-color: #45a049; /* Darker green color on hover */
+.select-container {
+  margin: 4% 0 0 2%;
 }
 
 .wrapper.fullscreen {
@@ -230,7 +239,5 @@ h2 {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 9999; /* Ensure it's above other elements */
-  /* Add any other styling you need for a fullscreen editor */
+  z-index: 4;
 }
-
