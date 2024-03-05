@@ -23,7 +23,6 @@ var htmlEditor = CodeMirror.fromTextArea(document.getElementById("html"), {
 
   
 }); 
-  htmlEditor.setSize("50px",null);
 
 var cssEditor = CodeMirror.fromTextArea(document.getElementById("css"), {
   lineNumbers: true,
