@@ -158,10 +158,14 @@ async function saveProject() {
     // Updating notification
     notificationElement.textContent = 'Project saved successfully!';
     console.log("Project saved successfully!");
+    setTimeout(() => {
+      document.body.removeChild(notificationElement);
+    }, 2000);
   } catch (err) {
     console.error("Error saving project:", err);
   }
 }
+
 
 document.querySelector('.save-btn').addEventListener('click', saveProject);
 document.querySelectorAll('.maximize').forEach(button => {
