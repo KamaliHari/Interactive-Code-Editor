@@ -122,16 +122,22 @@ function copyToClipboard(editorId) {
 
 async function saveProject() {
   try {
-   
     const htmlContent = window['htmlEditor'].getValue();
     const cssContent = window['cssEditor'].getValue();
     const jsContent = window['jsEditor'].getValue();
     
-    console.log("HTML Content:", htmlContent);
-    console.log("CSS Content:", cssContent);
-    console.log("JS Content:", jsContent);
+    // Displaying a notification
+    const notificationElement = document.createElement('div');
+    notificationElement.textContent = 'Saving project...';
+    notificationElement.style.position = 'fixed';
+    notificationElement.style.bottom = '20px';
+    notificationElement.style.right = '20px';
+    notificationElement.style.padding = '10px';
+    notificationElement.style.backgroundColor = '#333';
+    notificationElement.style.color = '#fff';
+    notificationElement.style.borderRadius = '5px';
+    document.body.appendChild(notificationElement);
 
-    
     const directoryHandle = await window.showDirectoryPicker();
 
     const htmlFileHandle = await directoryHandle.getFileHandle("index.html", { create: true });
@@ -149,11 +155,15 @@ async function saveProject() {
     await jsWritable.write(jsContent);
     await jsWritable.close();
 
+    // Updating notification
+    notificationElement.textContent = 'Project saved successfully!';
     console.log("Project saved successfully!");
   } catch (err) {
     console.error("Error saving project:", err);
   }
 }
+
+document.querySelector('.save-btn').addEventListener('click', saveProject);
 document.querySelectorAll('.maximize').forEach(button => {
   button.addEventListener('click', () => {
     const wrapper = button.closest('.wrapper');
