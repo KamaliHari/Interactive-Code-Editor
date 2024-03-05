@@ -59,14 +59,6 @@ function run(){
   output.contentWindow.eval(scriptCode);
 }
 
-document.querySelectorAll('.control').forEach((control) =>
-  control.addEventListener('click', (e) => {
-    e.target.parentElement.parentElement.classList.toggle('collapse');
-    e.target.classList.add('close');
-    e.target.parentElement.querySelector('h2').classList.toggle('hidden');
-  })
-);
-
 document.querySelectorAll('.clear').forEach((clear) =>
   clear.addEventListener('click', (e) => {
     const textareaId = e.target.getAttribute('data-textarea'); 
