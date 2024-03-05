@@ -130,7 +130,7 @@ controlButtons.forEach(button => {
 
 async function saveProject() {
   try {
-    // Get the content of each editor
+   
     const htmlContent = window['htmlEditor'].getValue();
     const cssContent = window['cssEditor'].getValue();
     const jsContent = window['jsEditor'].getValue();
@@ -139,22 +139,19 @@ async function saveProject() {
     console.log("CSS Content:", cssContent);
     console.log("JS Content:", jsContent);
 
-    // Request access to the file system to select a directory
+    
     const directoryHandle = await window.showDirectoryPicker();
 
-    // Create and write HTML file
     const htmlFileHandle = await directoryHandle.getFileHandle("index.html", { create: true });
     const htmlWritable = await htmlFileHandle.createWritable();
     await htmlWritable.write(htmlContent);
     await htmlWritable.close();
 
-    // Create and write CSS file
     const cssFileHandle = await directoryHandle.getFileHandle("styles.css", { create: true });
     const cssWritable = await cssFileHandle.createWritable();
     await cssWritable.write(cssContent);
     await cssWritable.close();
 
-    // Create and write JS file
     const jsFileHandle = await directoryHandle.getFileHandle("script.js", { create: true });
     const jsWritable = await jsFileHandle.createWritable();
     await jsWritable.write(jsContent);
@@ -166,7 +163,6 @@ async function saveProject() {
   }
 }
 
-// Attach click event listener to the save button
 document.querySelector('.save-btn').addEventListener('click', saveProject);
 
 
