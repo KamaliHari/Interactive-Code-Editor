@@ -125,8 +125,7 @@ async function saveProject() {
     const htmlContent = window['htmlEditor'].getValue();
     const cssContent = window['cssEditor'].getValue();
     const jsContent = window['jsEditor'].getValue();
-    
-    // Displaying a notification
+  
     const notificationElement = document.createElement('div');
     notificationElement.textContent = 'Saving project...';
     notificationElement.style.position = 'fixed';
@@ -155,7 +154,6 @@ async function saveProject() {
     await jsWritable.write(jsContent);
     await jsWritable.close();
 
-    // Updating notification
     notificationElement.textContent = 'Project saved successfully!';
     console.log("Project saved successfully!");
     setTimeout(() => {
@@ -178,5 +176,16 @@ document.querySelectorAll('.maximize').forEach(button => {
   });
 });
 
-
-
+function compile() {
+  try {
+    var htmlCode = htmlEditor.getValue();
+    let cssCode = "<style>" + cssEditor.getValue() + "</style>";
+    let scriptCode = jsEditor.getValue();
+    let output = document.querySelector(".outputContainer #output");
+    output.contentDocument.body.innerHTML = htmlCode + cssCode;
+    output.contentWindow.eval(scriptCode);
+    document.getElementById('errorMessages').innerHTML = ''; // Clear error messages on successful compilation
+  } catch (err) {
+    document.getElementById('errorMessages').innerHTML += '<div class="errorMessage">' + err.message + '</div>'; // Append error message
+  }
+}

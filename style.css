@@ -241,3 +241,19 @@ h2 {
   height: 100%;
   z-index: 7;
 }
+
+#errorMessages {
+  color: #721c24; 
+}
+
+#errorWindow {
+  background-color: #f8d7da; 
+  color: #721c24; 
+  padding: 10px 0px 0px 0px;
+  margin-top: 10px; 
+  border: 1px solid #f5c6cb; 
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box; 
+  overflow-wrap: break-word;  
+}
