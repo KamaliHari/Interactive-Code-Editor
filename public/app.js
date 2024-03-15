@@ -1,7 +1,8 @@
-  var html = document.getElementById('html').innerHTML;
+var html = document.getElementById('html').innerHTML;
 var css = document.getElementById('css');
 var js = document.getElementById('js');
 var code = document.getElementById('output').contentWindow.document;
+const socket = io();
 
 function compile() {
   var htmlCode = htmlEditor.getValue();
@@ -20,8 +21,6 @@ var htmlEditor = CodeMirror.fromTextArea(document.getElementById("html"), {
   autoCloseBrackets: true,
   extraKeys: { "Ctrl-Space": "autocomplete" },
   hintOptions: { hint: CodeMirror.hint.html }
-
-  
 }); 
 
 var cssEditor = CodeMirror.fromTextArea(document.getElementById("css"), {
@@ -48,6 +47,21 @@ var jsEditor = CodeMirror.fromTextArea(document.getElementById("js"), {
 htmlEditor.on("change", compile);
 cssEditor.on("change", compile);
 jsEditor.on("change", compile);
+
+htmlEditor.on('change', (cm) => {
+  const code = cm.getValue();
+  socket.emit('html change', code);
+});
+
+cssEditor.on('change', (cm) => {
+  const code = cm.getValue();
+  socket.emit('css change', code);
+});
+
+jsEditor.on('change', (cm) => {
+  const code = cm.getValue();
+  socket.emit('js change', code);
+});
 
 function run(){		
   var htmlCode=htmlEditor.getValue();			
@@ -119,6 +133,9 @@ function copyToClipboard(editorId) {
     });
 }
 
+function clickHandle(){
+  console.log("clicks");
+}
 
 async function saveProject() {
   try {
@@ -172,6 +189,54 @@ document.querySelectorAll('.maximize').forEach(button => {
     wrapper.classList.toggle('fullscreen');
     codeMirror.style.height = wrapper.classList.contains('fullscreen') ? '750px' : '150px';
   });
+});
+
+const debouncedUpdateCode = _.debounce((code) => {
+  const cursor = htmlEditor.getCursor(); // Store cursor position
+  socket.emit('code change', { code, cursor });
+}, 10); // Adjust the delay as needed
+
+let lastCode = '';
+let lastCursor = null;
+
+document.getElementById('join-room').addEventListener('click', () => {
+  const roomId = document.getElementById('room-id').value.trim();
+  if (roomId) {
+      socket.emit('join room', roomId);
+  }
+});
+
+document.getElementById('create-room').addEventListener('click', () => {
+  const roomName = document.getElementById('room-id').value.trim();
+    if (roomName) {
+        socket.emit('create room', roomName);
+    }
+});
+
+
+htmlEditor.on('change', (cm) => {
+  const code = cm.getValue();
+  if (code !== lastCode) {
+      debouncedUpdateCode(code);
+      lastCode = code;
+  }
+});
+
+socket.on('code change', (data) => {
+  if (data.code !== lastCode) {
+      const scrollInfo = htmlEditor.getScrollInfo(); // Store scroll position
+      lastCode = data.code;
+      htmlEditor.setValue(data.code);
+      if (data.cursor) {
+        htmlEditor.setCursor(data.cursor); // Restore cursor position
+      }
+      htmlEditor.scrollTo(scrollInfo.left, scrollInfo.top); // Restore scroll position
+  }
+});
+
+socket.on('room created', (roomId) => {
+  console.log(roomId)
+  document.getElementById('room-id').value = roomId;
 });
 
 
