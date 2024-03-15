@@ -184,11 +184,11 @@ function compile() {
     let output = document.querySelector(".outputContainer #output");
     output.contentDocument.body.innerHTML = htmlCode + cssCode;
     output.contentWindow.eval(scriptCode);
-    document.getElementById('errorMessages').innerHTML = ''; // Clear error messages on successful compilation
+    document.getElementById('errorMessages').innerHTML = ''; 
   } catch (err) {
     let errorMessage = '<div class="errorMessage">' + err.message;
     
-    // Extract line number from stack trace
+ 
     let lineNumberMatch = err.stack.match(/<anonymous>:(\d+):(\d+)/);
     if (lineNumberMatch && lineNumberMatch.length >= 3) {
       let lineNumber = parseInt(lineNumberMatch[1], 10);
@@ -196,6 +196,6 @@ function compile() {
     }
     
     errorMessage += '</div>';
-    document.getElementById('errorMessages').innerHTML += errorMessage; // Append error message
+    document.getElementById('errorMessages').innerHTML += errorMessage; 
   }
 }
