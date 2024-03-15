@@ -142,8 +142,7 @@ async function saveProject() {
     const htmlContent = window['htmlEditor'].getValue();
     const cssContent = window['cssEditor'].getValue();
     const jsContent = window['jsEditor'].getValue();
-    
-    // Displaying a notification
+  
     const notificationElement = document.createElement('div');
     notificationElement.textContent = 'Saving project...';
     notificationElement.style.position = 'fixed';
@@ -172,13 +171,16 @@ async function saveProject() {
     await jsWritable.write(jsContent);
     await jsWritable.close();
 
-    // Updating notification
     notificationElement.textContent = 'Project saved successfully!';
     console.log("Project saved successfully!");
+    setTimeout(() => {
+      document.body.removeChild(notificationElement);
+    }, 2000);
   } catch (err) {
     console.error("Error saving project:", err);
   }
 }
+
 
 document.querySelector('.save-btn').addEventListener('click', saveProject);
 document.querySelectorAll('.maximize').forEach(button => {
@@ -241,3 +243,26 @@ socket.on('room created', (roomId) => {
 
 
 
+function compile() {
+  try {
+    var htmlCode = htmlEditor.getValue();
+    let cssCode = "<style>" + cssEditor.getValue() + "</style>";
+    let scriptCode = jsEditor.getValue();
+    let output = document.querySelector(".outputContainer #output");
+    output.contentDocument.body.innerHTML = htmlCode + cssCode;
+    output.contentWindow.eval(scriptCode);
+    document.getElementById('errorMessages').innerHTML = ''; 
+  } catch (err) {
+    let errorMessage = '<div class="errorMessage">' + err.message;
+    
+ 
+    let lineNumberMatch = err.stack.match(/<anonymous>:(\d+):(\d+)/);
+    if (lineNumberMatch && lineNumberMatch.length >= 3) {
+      let lineNumber = parseInt(lineNumberMatch[1], 10);
+      errorMessage += ' (Line ' + lineNumber + ')';
+    }
+    
+    errorMessage += '</div>';
+    document.getElementById('errorMessages').innerHTML += errorMessage; 
+  }
+}

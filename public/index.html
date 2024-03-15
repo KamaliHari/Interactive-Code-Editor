@@ -146,8 +146,8 @@
           <img class="icon" src="../icons/JS-icon.svg" alt="" />
           <h2>JS</h2>
         </div>
-        <button class="control close">
-          <i class="fas fa-arrows-alt-h" style="color: #fff"></i>
+        <button class="control maximize">
+          <i class="fas fa-expand-alt" style="color: #fff"></i>
         </button>
       </div>
       <textarea rows="4" cols="50" name="js" id="js" cols="auto" rows="auto" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
@@ -165,6 +165,10 @@
 <div class="column">
   <div class="outputContainer" style="background-color: #fff; border-radius: 10px;">
     <iframe id="output" title="output" frameborder="0" width="100%" height="100%" ></iframe>
+      <div id="errorWindow">
+        <h3 class="errorTitle">Console</h3>
+        <div id="errorMessages"></div>
+      </div>
   </div>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -173,6 +177,7 @@
   <script type="text/javascript" src="app.js"></script>
 </div>
 </div>
+
 
 </body>
 </html>
