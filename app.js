@@ -186,6 +186,16 @@ function compile() {
     output.contentWindow.eval(scriptCode);
     document.getElementById('errorMessages').innerHTML = ''; // Clear error messages on successful compilation
   } catch (err) {
-    document.getElementById('errorMessages').innerHTML += '<div class="errorMessage">' + err.message + '</div>'; // Append error message
+    let errorMessage = '<div class="errorMessage">' + err.message;
+    
+    // Extract line number from stack trace
+    let lineNumberMatch = err.stack.match(/<anonymous>:(\d+):(\d+)/);
+    if (lineNumberMatch && lineNumberMatch.length >= 3) {
+      let lineNumber = parseInt(lineNumberMatch[1], 10);
+      errorMessage += ' (Line ' + lineNumber + ')';
+    }
+    
+    errorMessage += '</div>';
+    document.getElementById('errorMessages').innerHTML += errorMessage; // Append error message
   }
 }
